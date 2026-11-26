@@ -14,6 +14,7 @@ import sqlite3
 
 
 PUBLIC_SHA256 = "2407f0f32f73ae944fd57736d6f825b787719f3c0fd6487f07392833ceee9120"
+SECOND_PUBLIC_SHA256 = "42f1f035d4efd60af710f511a1a9df9cd59a157f7ba183a0e723d6f004fb5876"
 
 CASES = {
     "plain": {
@@ -44,6 +45,13 @@ CASES = {
         "tables": [{"page": 10, "rows": 8, "cols": 5,
                     "cells": [(1, 0, "20 min"), (1, 1, "0.582"), (1, 4, "0.472")]}],
         "figures": [10],
+    },
+    "forgetting-distribution": {
+        "pages": 15,
+        "document_hash": SECOND_PUBLIC_SHA256,
+        "anchors": [("abstract_open", 1, "For over a century, forgetting research has shown"),
+                    ("figure_1_caption", 2, "Figure 1. A depiction of forgetting in the distribution model.")],
+        "figures": [2, 3],
     },
 }
 

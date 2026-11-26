@@ -75,6 +75,15 @@ class QualityChecksTest(unittest.TestCase):
         self.save_run("scan", "docling", [(1, "Scanned page needs optical character recognition:")])
         self.assertEqual(self.codes("scan", "docling"), {"reference_passage_mismatch"})
 
+    def test_second_paper_figure_caption_requires_review(self):
+        lines = [(page, "Page text") for page in range(1, 16)]
+        lines[0] = (1, "For over a century, forgetting research has shown")
+        lines[1] = (2, "Figure 1. Adepiction of forgetting in the distribution model.")
+        pictures = [{"prov": [{"page_no": 2}]}, {"prov": [{"page_no": 3}]}]
+        self.save_run("forgetting-distribution", "docling", lines, {"pictures": pictures})
+        self.assertEqual(self.codes("forgetting-distribution", "docling"),
+                         {"reference_passage_mismatch", "figure_needs_visual_review"})
+
 
 if __name__ == "__main__":
     unittest.main()
