@@ -22,6 +22,17 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
+def xml_id_coverage(root: ET.Element) -> dict[str, dict[str, int]]:
+    coverage = {}
+    for tag in ("sec", "table-wrap", "fig", "ref"):
+        elements = root.findall(f".//{tag}")
+        coverage[tag] = {
+            "total": len(elements),
+            "with_id": sum(bool(element.get("id")) for element in elements),
+        }
+    return coverage
+
+
 def check(directory: Path, anchors: tuple[str, ...] = ANCHORS) -> dict:
     xml_path, html_path, pdf_path = (directory / f"article.{ext}" for ext in ("xml", "html", "pdf"))
     root = ET.parse(xml_path).getroot()
@@ -56,6 +67,7 @@ def check(directory: Path, anchors: tuple[str, ...] = ANCHORS) -> dict:
                 "figures": len(root.findall(".//fig")),
                 "figures_outside_body": len(root.findall(".//fig")) - len(body.findall(".//fig")),
                 "references": len(root.findall(".//ref")),
+                "locator_id_coverage": xml_id_coverage(root),
                 "replacement_chars": xml_text.count("\ufffd"),
             },
             "html": ({
