@@ -1,0 +1,7 @@
+# Project status — Phase 0, 2026-11-25
+
+Completed: v0.1 documentation and collaboration templates; local Git initialization (initial commit pending); two review submissions; provisional synthesis and decision sheet; draft requirement coverage, pilot contracts and acceptance scenarios; preliminary read-only Research MCP code inventory. On 2026-11-25 the owner confirmed technical-pilot scope (D-011), interim Anki grading authority (D-012), synthetic-only pilot data (D-013), bounded pilot implementation scope (D-014), and a sanitized public GitHub repository (D-015). The frozen v0.1 master specification hash remains unchanged.
+
+Pending: initial Git commit and public repository publication; exact first user-usable release coverage, Anki integration mechanism, real learner-data policy, final finding dispositions and approved requirement-to-milestone traceability; bounded integration and extraction experiments; full dependency/license checks; literature review; technical-pilot implementation and tests; later architecture and broader scope decisions.
+
+Current authorized scope: documentation, read-only discovery, and the bounded synthetic technical pilot of D-014. No product code, production data changes, integration/device tests, or empirical learning validation have occurred. The Research MCP inventory inspected code structure only and did not execute it. Apart from D-011 through D-015, synthesis recommendations remain unapproved.
