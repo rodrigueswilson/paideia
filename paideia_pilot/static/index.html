@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Paideia · Synthetic pilot</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="eyebrow">Paideia · technical pilot</div>
+      <h1>Learn from a source</h1>
+      <p class="intro">A small, source-grounded learning loop. It uses only a bundled synthetic PDF and stores no typed answers.</p>
+      <div class="notice">Synthetic-only pilot. Do not use real learner or private source data.</div>
+    </header>
+
+    <section aria-labelledby="studio-title">
+      <div class="section-title"><span class="step">1</span><h2 id="studio-title">Prepare</h2></div>
+      <p>Import the bundled PDF, inspect each quotation and question, then approve the ones you want to study.</p>
+      <button id="import-btn" class="primary">Import synthetic PDF</button>
+      <p id="status" role="status" aria-live="polite"></p>
+      <div id="objects" class="object-list"></div>
+    </section>
+
+    <section aria-labelledby="study-title">
+      <div class="section-title"><span class="step">2</span><h2 id="study-title">Study</h2></div>
+      <p>Recall your answer before revealing the fixture answer. Choose a self-rating; the app stores the rating, not your words.</p>
+      <div class="study-controls"><label for="minutes">Session length</label><select id="minutes"><option value="5">5 minutes</option><option value="10">10 minutes</option><option value="30">30 minutes</option></select><button id="start-btn">Start session</button><span id="timer" aria-live="off"></span></div>
+      <div id="study-card" class="study-card" hidden></div>
+    </section>
+
+    <footer><span id="counts"></span><span>Source and question content are synthetic fixtures.</span></footer>
+  </main>
+</body>
+</html>
