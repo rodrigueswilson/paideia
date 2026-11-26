@@ -19,7 +19,7 @@ Both engines completed on the same PDF and persisted separately identified runs 
 | Tables and figures | No structure or bounding boxes in this adapter | 5 tables with structured grids, 32 picture records, bounding boxes on all projected segments |
 | Observed conversion time | 0.37 s | 18.48 s |
 | Process RSS snapshot | Not measured | About 26 MB before conversion, 1,747 MB after conversion |
-| Observed problems | Repeated CFF font-decoding warnings because `fontTools` was absent in the pilot environment; replacement characters appeared in extracted text. | A word boundary was lost in the opening abstract; output must be checked before exact quotation. |
+| Observed problems | Repeated CFF font-decoding warnings because `fontTools` was absent in the pilot environment; later inspection of stored Unicode found no replacement characters, correcting the initial terminal-display impression. | A word boundary was lost in the opening abstract; output must be checked before exact quotation. |
 
 Timing excludes common setup and uses different Python environments, so it is not a fair speed ratio. RSS is before/after, not peak. This paper is one text-layer PDF and cannot measure scan/OCR reliability or generalize to the owner's source mix.
 
@@ -29,6 +29,6 @@ Rendered PDF pages 1, 8 and 10 were inspected locally. Page 1 visibly separates 
 
 ## Architectural reading
 
-The persisted source/document/run/segment pattern worked on an authentic scholarly PDF. Docling's structured tables and locators are useful for this source, but its text still needs normalization and verification. pypdf is a fast text-layer path in this run, but missing font support and absent table structure are material quality issues. A future quality gate should detect encoding replacement characters, broken word boundaries, table/figure requirements and uncertain quotations, then route to review or a different extractor. Figures should not be treated as recovered numeric data merely because a picture item exists.
+The persisted source/document/run/segment pattern worked on an authentic scholarly PDF. Docling's structured tables and locators are useful for this source, but its text still needs normalization and verification. pypdf is a fast text-layer path in this run; its font warnings warrant investigation, while absent table structure is a material limitation for this use. A future quality gate should detect encoding replacement characters if present, broken word boundaries, table/figure requirements and uncertain quotations, then route to review or a different extractor. Figures should not be treated as recovered numeric data merely because a picture item exists.
 
 Next decision: define the minimum quality report and active-run selection for a document, then test a small authorized mix of PDF types under an explicit source-data scope. Keep the actual application pilot synthetic-only until its scope and data policy are changed by the owner.
